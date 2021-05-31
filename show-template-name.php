@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Show Template Name
  * Description: Plugin to see which template has assigned every page in the list.
- * Version: 0.1
+ * Version: 0.2
  * Author: Luis Ruiz
  * Author URI: https://www.bubuku.com/
  * License: GPL3
