@@ -32,14 +32,15 @@ class FilterAction {
 	 * @access   public
 	 * 
 	 * @param string $column_name
-	 * @param number $id 	
+	 * @param number $id 
+	 * @return void	
 	 */
 	public function page_custom_column_views( $column_name, $id ) {
-		if ( $column_name === 'page-layout' ) {
+		if (  'page-layout' === $column_name ) {
 			$set_template = get_post_meta( get_the_ID(), '_wp_page_template', true );
 			
-			if ( $set_template == 'default' ) {
-				echo __('Default', PLUGIN_NAME);
+			if ( empty($set_template ) || 'default' === $set_template ) {
+				echo __('Default template', PLUGIN_NAME);
 			} else {
 				$aTemplates = get_page_templates();
 				ksort( $aTemplates );
@@ -48,6 +49,77 @@ class FilterAction {
 						echo $template;
 					}
 				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Add selector in filters
+	 * 
+	 * @since    0.1
+	 * @access   public
+	 *
+	 * @return void
+	 */
+	public function template_filter() {
+		$screen = '';
+		if ( is_admin() && function_exists( 'get_current_screen' ) ) {
+			$screen = get_current_screen();
+		}
+		
+		if ( $screen->id == 'edit-page' ) {
+			
+			$selected = '';
+			if ( isset( $_GET['template_admin_filter'] ) ) {
+				$selected = sanitize_text_field( $_GET['template_admin_filter'] );
+			}
+	
+			$out = '<select name="template_admin_filter"><option value="All">'. __(' All templates', PLUGIN_NAME ) .'</option>';
+				$aTemplates = get_page_templates();
+				ksort( $aTemplates );
+				foreach ( $aTemplates as $key => $value ) {
+					$is_selected = ($selected === $value) ? 'selected' : '';
+					$out .= '<option value="'. sanitize_text_field($value) .'" '. $is_selected .' >'. $key .'</option>';
+				}
+			$out .= '</select>';
+			echo $out;
+		}
+
+		return false;
+	}
+	
+	/**
+	 * Add new parameter to search query
+	 *
+	 * @since    0.1
+	 * @access   public
+	 * 
+	 * @param [type] $query
+	 * @return void
+	 */
+	public function template_filter_results($query){
+		
+		$screen = '';
+		if ( is_admin() && function_exists( 'get_current_screen' ) ) {
+			$screen = get_current_screen();
+		}
+		 
+		if ( $screen->id == 'edit-page' ) {
+			if ( isset($_GET['template_admin_filter'] ) && 'All' !== $_GET['template_admin_filter']  ) {
+				$template_id = sanitize_text_field($_GET['template_admin_filter']);
+	
+				$meta_query = array(
+					// 'relation' => 'AND',
+					array(
+						'key' => '_wp_page_template',
+						'value' => $template_id,
+						'compare' => '=',
+					)
+				);
+	
+				$query->set('meta_query', $meta_query);
 			}
 		}
 	}
@@ -60,7 +132,11 @@ class FilterAction {
 	 * @access   private
 	 */
 	private function _define_admin_hooks() {
-		add_filter( 'manage_pages_columns', array( $this, 'page_column_views'), 10, 1 );
-		add_action( 'manage_pages_custom_column', array( $this, 'page_custom_column_views'), 5, 2 );
+		add_filter( 'manage_pages_columns', array( $this, 'page_column_views' ), 10, 1 );
+		add_action( 'manage_pages_custom_column', array( $this, 'page_custom_column_views' ), 5, 2 );		
+		// add select
+		add_action( 'restrict_manage_posts', array( $this, 'template_filter' ) );
+		// Filter query
+		add_action( 'pre_get_posts', array( $this, 'template_filter_results' ) );
 	}
 }
