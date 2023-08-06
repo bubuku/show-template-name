@@ -1,10 +1,10 @@
 === show template name ===
 Contributors: lruizcode
 Tags: template, theme template
-Requires at least: 4.9
-Tested up to: 5.7.2
+Requires at least: 5.2
+Tested up to: 6.3
 Requires PHP: 7.2
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,6 +25,9 @@ WordPress installation and then activate the Plugin from Plugins page.
 3. Result of filtering by template "Landing"
 
 == Changelog ==
+= 0.3 =
+* Show in the top admin bar the name of the current template.
+
 = 0.2 =
 * Filter by template name.
 
