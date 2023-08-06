@@ -13,9 +13,6 @@ class Plugin {
     private const LANG_DIR = '/languages';
 
     public function __invoke() {
-        if (! \is_admin()) {
-            return;
-        }
 
         \define(__NAMESPACE__ . '\_PLUGIN_', dirname(__DIR__));
         \define(__NAMESPACE__ . '\PLUGIN_NAME', basename(_PLUGIN_));
@@ -32,10 +29,18 @@ class Plugin {
     }
 
     private function initialize(): void {
-        require_once(self::_CLASSES_ . '/admin/filter-action.php'); 
+        
+        if ( is_admin() ) {
+            require_once(self::_CLASSES_ . '/admin/filter-action.php'); 
+            if (class_exists('Bubuku\Plugins\ShowTemplateName\Admin\FilterAction')) {
+                $filter_action_admin = new \Bubuku\Plugins\ShowTemplateName\Admin\FilterAction();
+            }
 
-        if (class_exists('Bubuku\Plugins\ShowTemplateName\Admin\FilterAction')) {
-            $filter_action_admin = new \Bubuku\Plugins\ShowTemplateName\Admin\FilterAction();
+        } else {
+            require_once(self::_CLASSES_ . '/front/filter-action.php'); 
+            if (class_exists('Bubuku\Plugins\ShowTemplateName\Front\FilterAction')) {
+                $filter_action_admin = new \Bubuku\Plugins\ShowTemplateName\Front\FilterAction();
+            }
         }
         
     }
