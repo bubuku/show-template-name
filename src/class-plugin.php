@@ -31,7 +31,7 @@ class Plugin {
         }
     }
 
-    final private function initialize(): void {
+    private function initialize(): void {
         require_once(self::_CLASSES_ . '/admin/filter-action.php'); 
 
         if (class_exists('Bubuku\Plugins\ShowTemplateName\Admin\FilterAction')) {
@@ -45,7 +45,7 @@ class Plugin {
      *
      * @return void
      */
-    final private function uninstall(): void {
+    private function uninstall(): void {
         ( new Settings() )->unregister();
     }
 
