@@ -106,7 +106,7 @@ class FilterAction {
 			$screen = get_current_screen();
 		}
 		 
-		if ( $screen->id == 'edit-page' ) {
+		if ( is_object($screen) && $screen->id == 'edit-page' ) {
 			if ( isset($_GET['template_admin_filter'] ) && 'All' !== $_GET['template_admin_filter']  ) {
 				$template_id = sanitize_text_field($_GET['template_admin_filter']);
 	
