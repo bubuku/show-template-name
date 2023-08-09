@@ -27,6 +27,7 @@ WordPress installation and then activate the Plugin from Plugins page.
 == Changelog ==
 = 0.3 =
 * Show in the top admin bar the name of the current template.
+* Fix some PHP errors.
 
 = 0.2 =
 * Filter by template name.
