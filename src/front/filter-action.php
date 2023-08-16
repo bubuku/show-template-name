@@ -24,11 +24,15 @@ class FilterAction {
 			return;
 		}
 
+		$template_name = '';
         if ( $current_template = get_page_template_slug( get_queried_object_id() ) ){
             $templates = wp_get_theme()->get_page_templates();
             $template_name = $templates[$current_template];
         }
 
+		if ( empty( $template_name ) ) {
+			return false;
+		}
 
 		$wp_admin_bar->add_menu( 
 			array(
@@ -37,7 +41,7 @@ class FilterAction {
 			) 
 		);
 
-		return false;
+		return true;
 	}
 
 	/**
