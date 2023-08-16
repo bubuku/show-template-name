@@ -4,7 +4,7 @@ Tags: template, theme template
 Requires at least: 5.2
 Tested up to: 6.3
 Requires PHP: 7.2
-Stable tag: 0.3
+Stable tag: 0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,8 +23,11 @@ WordPress installation and then activate the Plugin from Plugins page.
 1. Is created the column Template, where it shows the templates that are used.
 2. Filter templates by name
 3. Result of filtering by template "Landing"
+4. We show the template that is used in the administration bar
 
 == Changelog ==
+= 0.4 =
+* Fix some PHP errors.
 = 0.3 =
 * Show in the top admin bar the name of the current template.
 * Fix some PHP errors.

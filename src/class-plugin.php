@@ -7,7 +7,7 @@ use const PHP_VERSION;
 class Plugin {
     
     public const _CLASSES_ = __DIR__;
-    public const CURRENT_VERSION = '0.3';
+    public const CURRENT_VERSION = '0.4';
 
     private const SUPPORTED_PHP_VERSION = '7.2.0';
     private const LANG_DIR = '/languages';
