@@ -26,8 +26,12 @@ WordPress installation and then activate the Plugin from Plugins page.
 4. We show the template that is used in the administration bar
 
 == Changelog ==
+= 1.0.1 =
+* Change icons and banners for the WordPress repository
+
 = 0.4 =
 * Fix some PHP errors.
+
 = 0.3 =
 * Show in the top admin bar the name of the current template.
 * Fix some PHP errors.
