@@ -8,12 +8,16 @@ Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Complement to see which template assigned to each page in the list and filter by this criterion
+Plugin to improve the management of your page templates and Custom post Type on WordPress
 
 == Description ==
 With this plugin, you can easily see which templates have been assigned to each page in the list. It is mandatory if you have a theme with many templates and pages, with this plugin you will easily identify them.
 
-Now you can filter by the name of the template so easily locate pages that use the template.
+Now you can filter by the name of the template, so easily locate pages that use the template.
+
+We've also added the template Slug name as a class in the body of the Gutenberg editor as well as in the front of the template to better encapsulate the styles if you need it.
+
+More information in Spanish about the plugin in the link [Improve your template management on WordPress](https://www.bubuku.com/mejor-gestion-plantillas-wordpress/)
 
 == Installation ==
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your
