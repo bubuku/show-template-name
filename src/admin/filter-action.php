@@ -125,6 +125,27 @@ class FilterAction {
 	}
 
 	/**
+	 * Add class to body
+	 * 
+	 * @since    0.1
+	 * @access   public
+	 * 
+	 * 
+	 * @param string $classes
+	 * @return string
+	 * 
+	 */
+	public function add_body_class( $classes ) {
+		$template_slug = get_page_template_slug();
+		if ($template_slug) {
+			$page_name = basename($template_slug, '.php');
+			$class_name = 'tpl-'. sanitize_html_class( $page_name );
+			$classes .= ' ' . $class_name;
+		}
+		return $classes;
+	}
+
+	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
@@ -138,5 +159,7 @@ class FilterAction {
 		add_action( 'restrict_manage_posts', array( $this, 'template_filter' ) );
 		// Filter query
 		add_action( 'pre_get_posts', array( $this, 'template_filter_results' ) );
+		// add Class to body
+		add_filter( 'admin_body_class', array( $this, 'add_body_class' ) );
 	}
 }
