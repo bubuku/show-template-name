@@ -2,9 +2,9 @@
 Contributors: lruizcode
 Tags: template, theme template
 Requires at least: 5.2
-Tested up to: 6.3.1
+Tested up to: 6.5.3
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,6 +32,9 @@ WordPress installation and then activate the Plugin from Plugins page.
 6. We add a CSS class to the body of the Gutenberg editor whose name is the template slug.
 
 == Changelog ==
+= 1.0.2 =
+* Compatibility: WordPress 6.3.1 – WordPress 6.5.3
+
 = 1.0.1 =
 * Added CSS class with the template slug in the body of the WordPress editor and template.
 * Change icons and banners for the WordPress repository.
